@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Book_My_Show</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%
+=begin%>
+ <%= javascript_importmap_tags %> 
+<%
+=end%>
+  </head>
+   
+  <body>
+
+    <div style="background-color: #007BFF; padding: 10px; text-align: center;">
+      <p style="color: #fff; font-size: 14px; margin: 0;">&copy; 2023 Book_My_Show</p>
+    </div>
+        <%= yield %> 
+        <br>
+<div style="background-color: #007BFF; padding: 10px;">
+      <p style="color: #fff; font-size: 14px; margin: 0;">Book_My_Show</p>
+    </div>
+  </body>
+</html>

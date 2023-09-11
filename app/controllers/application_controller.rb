@@ -12,8 +12,11 @@ class ApplicationController < ActionController::Base
   def login 
     @user = User.find_by(email: params[:email])
     if @user&.authenticate(params[:password])
-      session[:current_user]= jwt_encode({user_id: @user.id}) 
-      render json: {message: "UserLogin Succesfull"}
+      session[:current_user]= jwt_encode({user_id: @user.id})
+      debugger
+      redirect_to movies_path
+      # render json: {message: "UserLogin Succesfull"}
+      # render json: {token: token}
     else
         render json: { error: 'Unauthorized' }, status: :unauthorized
     end

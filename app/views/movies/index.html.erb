@@ -1,0 +1,71 @@
+<%
+=begin%>
+ 
+<center>
+<h1>All Movies</h1>
+</center>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Poster</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td><%= movie.name %></td>
+        <td>
+          <% if movie.poster.attached? %>
+            <%= image_tag movie.poster %>
+          <% else %>
+            No Poster Available
+          <% end %>
+        </td>
+        <td>
+          <%= link_to 'Show', movie %>
+          <%= link_to 'Edit', edit_movie_path(movie) %>
+          <%= link_to 'Delete', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table> 
+<%
+=end%>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  background-image: url('img_girl.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+h1   {color: blue;}
+p    {color: red;}
+</style>
+</head>
+<body>
+
+<% @movies.each do |movie| %>
+      <tr>
+        <h1><%= movie.name %></h1>
+        <td>
+          <% if movie.poster.attached? %>
+            <%= image_tag movie.poster %>
+          <% else %>
+            No Poster Available
+          <% end %>
+        </td>
+        <td>
+          <%= link_to 'Show', movie %>
+          <%= link_to 'Edit', edit_movie_path(movie) %>
+          <%= link_to 'Delete', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+
+</body>

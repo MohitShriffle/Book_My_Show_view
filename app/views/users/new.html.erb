@@ -1,0 +1,34 @@
+<h1>New User</h1>
+<%= form_with url: "/users", method: :post do |form| %>
+  <div>
+    <%= form.label :name%><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :user_name%><br>
+    <%= form.text_field :user_name %>
+  </div>
+   <div>
+    <%= form.label :email%><br>
+    <%= form.text_field :email %>
+  </div><div>
+    <%= form.label :password %><br>
+    <%= form.text_field :password_digest%>
+  </div>
+   <div>
+    <%= form.label :password_confirmation %><br>
+    <%= form.text_field :password_confirmation %>
+  </div>
+  <div>
+    <%= form.label :type %><br>
+    <%= form.text_field :type %>
+  </div>
+  <div>
+    <%= form.submit %>
+  
+  </div>
+  <br>
+  <%= link_to "Login", login_path %>
+  
+<% end %>

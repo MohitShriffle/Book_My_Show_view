@@ -22,6 +22,7 @@ class MoviesController < ApplicationController
     end
   end
   
+  
   def update
     if @movie.update(movie_params)
       render json: @movie

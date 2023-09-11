@@ -1,23 +1,4 @@
-<h1>Listing Books</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |book| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= book.email %></td>
-        
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<h1>Names of all the people</h1>
+<% @users.each do |person| %>
+  Name: <%= person.name %><br>
+<% end %>

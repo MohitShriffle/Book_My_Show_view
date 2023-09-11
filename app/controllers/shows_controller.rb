@@ -11,7 +11,7 @@ class ShowsController < ApplicationController
       render json: show
     else
       render json: show.errors.full_messages
-    end 
+    end                                                        
   end
   
   def update
