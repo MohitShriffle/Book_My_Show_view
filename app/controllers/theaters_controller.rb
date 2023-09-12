@@ -1,6 +1,6 @@
 class TheatersController < ApplicationController
 before_action :set_value ,only: [:update, :destroy,:show]
-skip_before_action :check_customer 
+# skip_before_action :check_customer 
 
 def index
     theater=@current_user.theaters

@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  skip_before_action :check_owner
+  # skip_before_action :check_owner
   def index 
     booking_history=@current_user.tickets 
     if booking_history.presence

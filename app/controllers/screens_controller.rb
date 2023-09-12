@@ -1,5 +1,5 @@
 class ScreensController < ApplicationController
-  skip_before_action :check_customer
+  # skip_before_action :check_customer
   before_action :set_screen ,only: [:update, :destroy] 
   
   def index 

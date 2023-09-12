@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
-  skip_before_action :check_customer
-  before_action :check_owner, except: [:index, :search_movie]
+  # skip_before_action :check_customer
+  # before_action :check_owner, except: [:index, :search_movie]
   before_action :set_value, only:[:update, :destroy, :show]
 
   def index

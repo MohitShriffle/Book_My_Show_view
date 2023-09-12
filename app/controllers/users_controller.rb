@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-skip_before_action :authenticate_user, except: [:show, :update]  
-skip_before_action :check_customer 
-skip_before_action :check_owner
+# skip_before_action :authenticate_user, except: [:show, :update]  
+# skip_before_action :check_customer 
+# skip_before_action :check_owner
 
 def index
   @users=User.all
@@ -21,6 +21,7 @@ def new
 end
 def create
   @user = User.new(user_params)
+  debugger
   if @user.save 
     UserMailer.with(user: @user).welcome_email.deliver_later
   else

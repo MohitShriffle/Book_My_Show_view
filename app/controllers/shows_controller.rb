@@ -1,5 +1,5 @@
 class ShowsController < ApplicationController
-  skip_before_action :check_customer
+  # skip_before_action :check_customer
   
   def index 
     render json: Show.all  
