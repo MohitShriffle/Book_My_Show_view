@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
 # skip_before_action :authenticate_user, except: [:show, :update]  
-# skip_before_action :check_customer 
-# skip_before_action :check_owner
+
 
 def index
-  @users=User.all
-  # render json: users
+  if current_user.type=="Owner"
+    redirect_to movies_path
+  # elsif current_user.type=="Customer"
+  #   redirect_to movies_path
+  end
 end
 def show
   render json: @current_user

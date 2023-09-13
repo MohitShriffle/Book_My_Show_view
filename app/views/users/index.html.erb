@@ -1,4 +1,11 @@
 <h1>Names of all the people</h1>
-<% @users.each do |person| %>
-  Name: <%= person.name %><br>
+<% @users.each do |user| %>
+  Name: <%= user.name %><br>
+     <td>
+          <% if user.image.attached? %>
+            <%= image_tag user.image %>
+          <% else %>
+            No Poster Available
+          <% end %>
+        </td>
 <% end %>

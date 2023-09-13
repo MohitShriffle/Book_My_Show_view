@@ -15,23 +15,27 @@
   </head>
    
   <body>
+      <div style="background-color: #007BFF; padding: 10px; text-align: center;">
+          <p style="color: #fff; font-size: 14px; margin: 0;">Book_My_Show</p>
+
+    </div>
     <div id="user_nav">
     <% if user_signed_in? %>
-        Signed in as <%= current_user.email %>. This cannot be cheese?
+        Signed in as <%= current_user.email %>&nbsp &nbsp &nbsp
         <%= link_to 'Sign out', destroy_user_session_path %>
     <% else %>
         <%= link_to 'Register', new_user_registration_path %> or <%= link_to 'Sign in', new_user_session_path %>
     <% end %>
 </div>
-    <div style="background-color: #007BFF; padding: 10px; text-align: center;">
-      <p style="color: #fff; font-size: 14px; margin: 0;">&copy; 2023 Book_My_Show</p>
-    </div>
+
     <% if notice %> <p class="alert alert-success"><%= notice %></p> <% end %>
     <% if alert %> <p class="alert alert-danger"><%= alert %></p> <% end %>
         <%= yield %> 
         <br>
+<center>
 <div style="background-color: #007BFF; padding: 10px;">
-      <p style="color: #fff; font-size: 14px; margin: 0;">Book_My_Show</p>
-    </div>
+            <p style="color: #fff; font-size: 14px; margin: 0;">&copy; 2023 Book_My_Show</p>
+      </div>
+  </center>
   </body>
 </html>

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: 
+  { 
+    sessions: 'users/sessions'
+    }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :users
   resources :theaters
@@ -12,7 +15,7 @@ Rails.application.routes.draw do
   get "/search_movie", to: "movies#search_movie"
   get "/search_tickets",to: "tickets#search_tickets"
   # Defines the root path route ("/")
-  root "users#signup"
+  root "users#index"
   # root "users#index"
   get "/login", to: "users#login"
 end

@@ -1,0 +1,8 @@
+  <td>
+  <% if @movie.poster.attached? %>
+  <%= image_tag @movie.poster %>
+<% else %>
+No Poster Available
+<% end %>
+</td><br>
+<%= @movie.name%>
