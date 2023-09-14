@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
   
   before_action :check_owner, except: [:index, :search_movie]
-  before_action :set_value, only:[:update, :destroy, :show]
+  before_action :set_value, only:[:update, :destroy, :show,:edit]
 
   def index
     @movies = Movie.paginate(:page => params[:page], :per_page => 10)
@@ -27,17 +27,21 @@ class MoviesController < ApplicationController
   def edit
   end
   def update
-    if @movie.update(movie_params)
-      render json: @movie
+    if @movie.update(movie_params) 
+      debugger
+      redirect_to movie_url(@movie)
     else
       render json: @movie.errors.full_messages
     end
   end
   
   def destroy
-    if @movie.destroy
-      render json: {message: "movie delete succesfully"}
-    end
+     if @movie.destroy
+      redirect_to movie_url(@movie)
+     else
+      @movie.errors.full_messages
+     end
+  
   end
   
   def search_movie

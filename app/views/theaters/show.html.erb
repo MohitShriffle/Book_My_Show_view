@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= @theater.name%>
+
+<div>
+  <%= link_to "Edit this Theater", edit_theater_path(@theater) %> |
+  <%= link_to "Back to Theater", theaters_path %>
+
+  <%= button_to "Destroy this Theater", @theater, method: :delete %>
+</div>

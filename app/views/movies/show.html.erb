@@ -1,8 +1,10 @@
-  <td>
-  <% if @movie.poster.attached? %>
-  <%= image_tag @movie.poster %>
-<% else %>
-No Poster Available
-<% end %>
-</td><br>
+<p style="color: green"><%= notice %></p>
+
 <%= @movie.name%>
+
+<div>
+  <%= link_to "Edit this movie", edit_movie_path(@movie) %> |
+  <%= link_to "Back to movies", movies_path %>
+
+  <%= button_to "Destroy this movie", @movie, method: :delete %>
+</div>

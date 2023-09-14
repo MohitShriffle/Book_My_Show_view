@@ -4,14 +4,14 @@ before_action :set_value ,only: [:update, :destroy,:show]
 before_action :check_owner
 
 def index
-    theater=@current_user.theaters
-    render json: theater
+  @theaters=@current_user.theaters
 end
 
 def show 
-  render json: @theater
+  
 end
-
+def new 
+end
 def create 
   theater=@current_user.theaters.new(theater_params)
   if theater.save
@@ -20,7 +20,8 @@ def create
     render json:{errors: theater.errors.full_messages}
   end
 end
-
+def edit
+end
 def update
   if @theater.update(theater_params)
     render json: @theater

@@ -55,16 +55,21 @@ p    {color: red;}
         <h1><%= movie.name %></h1>
         <td>
           <% if movie.poster.attached? %>
+          <% unless movie.shows.nil? %>
+            <%= movie.shows%>
+            <%else%>
+              Show Not Available
+            <%end%>
             <%= image_tag movie.poster %>
           <% else %>
             No Poster Available
           <% end %>
         </td>
         <td>
-       
           <%= link_to 'Show', movie %>
-          <%= link_to 'Edit', edit_movie_path(movie) %>
           <%= link_to 'Delete', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to "New movie", new_movie_path %>
+          <%= link_to "Theaters", theaters_path%>
         </td>
       </tr>
     <% end %>

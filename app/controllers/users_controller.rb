@@ -10,7 +10,7 @@ def index
   end
 end
 def show
-  render json: @current_user
+  
 end
 
 def login;
@@ -25,7 +25,7 @@ def create
   @user = User.new(user_params)
   debugger
   if @user.save 
-    UserMailer.with(user: @user).welcome_email.deliver_later
+    UserMailer.welcome_email(@user).deliver_later
   else
     render json: { errors: @user.errors.full_messages}, status: :unprocessable_entity   
   end 
