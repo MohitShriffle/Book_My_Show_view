@@ -1,0 +1,16 @@
+<h1>Add new Theater</h1>
+
+<%= form_tag :action => 'create' do %>
+<p><label for = "theater">Name</label>:
+<%= text_field 'theater', 'name' %></p>
+
+<p><label for = "Theater_location">location</label>:
+<%= text_field 'theater', 'location' %></p>
+
+
+
+
+<%= submit_tag "Create" %>
+
+<% end -%>
+<%= link_to 'Back', {:action => 'index'} %>

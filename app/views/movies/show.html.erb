@@ -1,7 +1,23 @@
+<style>
+.small-image{
+  width:200px;
+  height: 300px;
+  margin:2px;
+  padding: 3px;
+}
+
+</style>
 <p style="color: green"><%= notice %></p>
 
-<%= @movie.name%>
+<h3 style="color: brown; padding-left: 75px"><%= @movie.name%></h3>
+<td style="width: auto; height: auto">
+    <% if @movie.poster.attached? %>
+      <%= image_tag(@movie.poster.url, class: 'small-image') %>
 
+          <% else %>
+            No Poster Available
+          <% end %>
+        </td>
 <div>
   <%= link_to "Edit this movie", edit_movie_path(@movie) %> |
   <%= link_to "Back to movies", movies_path %>

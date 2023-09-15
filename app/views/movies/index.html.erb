@@ -46,32 +46,43 @@ body {
 }
 h1   {color: blue;}
 p    {color: red;}
+.small-image{
+  width:200px;
+  height: 300px;
+  margin:2px;
+  padding: 3px;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: cyan ;
+}
 </style>
 </head>
 <body>
+<ul>
+ <br>
+  <%= link_to "Create New movie", new_movie_path %><br>
+  <%= link_to "Theaters", theaters_path%>
 
 <% @movies.each do |movie| %>
       <tr>
         <h1><%= movie.name %></h1>
+        <h3>Release Date <%=movie.release_date%></h3>
         <td>
           <% if movie.poster.attached? %>
-          <% unless movie.shows.nil? %>
-            <%= movie.shows%>
-            <%else%>
-              Show Not Available
-            <%end%>
-            <%= image_tag movie.poster %>
+            <%= image_tag(movie.poster.url, class: 'small-image') %><br>
           <% else %>
             No Poster Available
           <% end %>
         </td>
         <td>
-          <%= link_to 'Show', movie %>
-          <%= link_to 'Delete', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <%= link_to "New movie", new_movie_path %>
-          <%= link_to "Theaters", theaters_path%>
+          <%= link_to 'Show', movie %><br>
+          <%= link_to 'Delete', movie, method: :delete, data: { confirm: 'Are you sure?' } %><br>
         </td>
       </tr>
     <% end %>
-
+</ul>
 </body>

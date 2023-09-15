@@ -17,23 +17,22 @@
 <p><%= link_to "Add new Theater", {:action => 'new' }%></p> 
 <%
 =end%>
-
+<%= link_to "Home ",root_path%><br>
+<%= link_to "Create New Theater", new_theater_path %><br>
 <% @theaters.each do |theater| %>
       <tr>
-        <%= theater.name %>
+        Name: <%= theater.name %><br>
+        Location: <%= theater.location%>
         <br>
         <td>
 
         </td>
         <td>
-
-         <%= link_to 'Show', theater%><br>
-         
-          <%= link_to "New Theater", new_theater_path %>
-          <br>
+        <%= link_to 'Show', theater%><br>
+         <br>
           
           <br>
         </td> 
 
       </tr>
-    <% end %>
+    <% end %><br>

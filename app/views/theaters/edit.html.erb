@@ -1,8 +1,12 @@
-<h2>Edit Theater</h2>
-<%render "form" ,theater: @theater %>
-<br>
 
-<div>
-  <%= link_to "Show this theater", @theater %> |
-  <%= link_to "Back to Theaters",  theaters_path%>
-</div>
+<h1>Edit Theater Detail</h1>
+
+<%= form_for @theater, :url =>{:action => "update", :id =>@theater} do |f| %>
+
+<p>Name: <%= f.text_field 'name' %></p>
+<p>Location: <%= f.text_field 'location' %></p>
+<%= f.submit "Save changes" %>
+
+<% end %>
+
+<%= link_to 'Back', {:action => 'index' } %>

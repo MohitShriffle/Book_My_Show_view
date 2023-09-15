@@ -4,9 +4,9 @@ class MoviesController < ApplicationController
   before_action :set_value, only:[:update, :destroy, :show,:edit]
 
   def index
-    @movies = Movie.paginate(:page => params[:page], :per_page => 10)
+    # @movies = Movie.paginate(:page => params[:page], :per_page => 10)
     # render json: @movie
-    # @movies =Movie.all
+     @movies =Movie.all
   end
 
   def show
@@ -14,21 +14,21 @@ class MoviesController < ApplicationController
   end
 
   def new
-   
+   @movie = Movie.new
   end
   def create
     movie=Movie.new(movie_params)
-    if movie.save
-      render json: movie
+   if movie.save
+      redirect_to movie_path(movie)
     else
       movie.errors.full_messages
     end
   end
   def edit
+    render json: {message: "Edit method called "}
   end
   def update
     if @movie.update(movie_params) 
-      debugger
       redirect_to movie_url(@movie)
     else
       render json: @movie.errors.full_messages
@@ -37,7 +37,7 @@ class MoviesController < ApplicationController
   
   def destroy
      if @movie.destroy
-      redirect_to movie_url(@movie)
+      redirect_to movies_path
      else
       @movie.errors.full_messages
      end
@@ -59,7 +59,7 @@ class MoviesController < ApplicationController
   private
   
   def movie_params
-    params.permit(:name, :poster)
+    params.permit(:name, :release_date, :poster )
   end
   
   def set_value

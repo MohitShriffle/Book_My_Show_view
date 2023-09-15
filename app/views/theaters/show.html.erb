@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
-<%= @theater.name%>
-
+    Name: <%= @theater.name %><br>
+    Location: <%= @theater.location%>
 <div>
   <%= link_to "Edit this Theater", edit_theater_path(@theater) %> |
   <%= link_to "Back to Theater", theaters_path %>

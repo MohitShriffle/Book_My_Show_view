@@ -3,11 +3,7 @@ class UsersController < ApplicationController
 
 
 def index
-  if current_user.type=="Owner"
-    redirect_to movies_path
-  # elsif current_user.type=="Customer"
-  #   redirect_to movies_path
-  end
+  redirect_to movies_path
 end
 def show
   

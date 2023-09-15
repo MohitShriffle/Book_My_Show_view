@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
   before_action :current_user
 
   
-  # before_action do
-  #   ActiveStorage::Current.host = request.base_url
-  # end
+  before_action do
+    ActiveStorage::Current.host = request.base_url
+  end
 
   protected
 
