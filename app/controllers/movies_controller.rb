@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
-  
-  before_action :check_owner, except: [:index, :search_movie]
-  before_action :set_value, only:[:update, :destroy, :show,:edit]
+
+  # before_action :set_value, only:[:update, :destroy,:edit]
+  load_and_authorize_resource
 
   def index
     # @movies = Movie.paginate(:page => params[:page], :per_page => 10)
@@ -10,60 +10,71 @@ class MoviesController < ApplicationController
   end
 
   def show
-    
+  end
+  def new
+    @movie = Movie.new
+    authorize! :create, @movie
+    render :new
   end
 
-  def new
-   @movie = Movie.new
-  end
   def create
     movie=Movie.new(movie_params)
-   if movie.save
+    if movie.save
       redirect_to movie_path(movie)
     else
       movie.errors.full_messages
     end
   end
+
   def edit
-    render json: {message: "Edit method called "}
   end
+
   def update
-    if @movie.update(movie_params) 
+    if @movie.update(movie_params)
       redirect_to movie_url(@movie)
     else
       render json: @movie.errors.full_messages
     end
   end
-  
+
   def destroy
-     if @movie.destroy
+    if @movie.destroy
       redirect_to movies_path
-     else
+    else
       @movie.errors.full_messages
-     end
-  
+    end
   end
-  
+  def search_movie_by_name
+
+  end
   def search_movie
     name = params[:name]
+
     if name.blank?
-      return render json: { error: "Name field can't be blank" }, status: :bad_request
+      flash[:notice] = 'Name cannot be blank'
+    else
+      movies = Movie.where("name LIKE ?", "%#{name}%")
+
+      if movies.empty?
+        flash[:notice] = 'Movie Not Found'
+      else
+        # Assuming you want to redirect to the first found movie if there are multiple matches
+        redirect_to movie_path(movies.first)
+        return
+      end
     end
-    movies = Movie.where("name ILIKE ?", "%#{name}%")
-    if movies.empty?
-      return render json: { message: "Movie not found" }, status: :not_found
-    end
-    render json: movies
+
+    # Redirect back to the previous page (or any other desired page)
+    redirect_back fallback_location: root_path
   end
-  
+
   private
-  
+
   def movie_params
-    params.permit(:name, :release_date, :poster )
+    params.require(:movie).permit(:name, :release_date, :poster)
   end
-  
+
   def set_value
     @movie=Movie.find(params[:id])
   end
 end
-

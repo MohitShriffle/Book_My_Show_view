@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Movie</title>
-    
-    <style>
-    
+<style>
+  
         body {
             font-family: Arial, sans-serif;
             background-color: #F0F0F0;
@@ -34,9 +29,7 @@
         }
 
         form input[type="text"],
-        form input[type="date"],
-        form input[type="file"],
-        form input[type="submit"] {
+         form input[type="submit"] {
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
@@ -60,26 +53,20 @@
             text-align: center;
             margin-top: 10px;
         }
-    </style>
-</head>
+      .flash-notice {
+      color: red;
+    }
+</style>
 <body>
-    <div class="container">
-        <h1>New Movie</h1>
-        <%= form_with url: "/movies", method: :post do |form| %>
-            <label for="name">Name</label>
-            <%= form.text_field :name ,id: "name"%><br><br>
-            
-            <label for="release_date">Release Date</label>
-            <%= form.date_field :release_date, id: "release_date" %><br><br>
-            <label for="poster">Poster</label>
-            <%= form.file_field :poster, id: "poster" %><br><br>
-
-            <%= form.submit %><br>
-        <% end %>
-
-        <div class="back-link">
-            <%= link_to "Back to movies", movies_path %>
-        </div>
-    </div>
+  <div class="container">
+    <div class="flash-notice"><%= flash[:notice] %></div>
+    <%= form_with url: "/search_movie", method: :post do |form| %>
+      <label for="name">Name</label>
+      <%= form.text_field :name, id: "name" %><br><br>
+      <%= form.submit %><br>
+    <% end %>
+  </div>
 </body>
+
+</head>
 </html>

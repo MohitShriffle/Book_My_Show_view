@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
-# skip_before_action :authenticate_user, except: [:show, :update]  
+# skip_before_action :authenticate_user, except: [:show, :update]
 
 
 def index
   redirect_to movies_path
 end
 def show
-  
+
 end
 
 def login;
@@ -19,15 +19,14 @@ def new
 end
 def create
   @user = User.new(user_params)
-  debugger
-  if @user.save 
+  if @user.save
     UserMailer.welcome_email(@user).deliver_later
   else
-    render json: { errors: @user.errors.full_messages}, status: :unprocessable_entity   
-  end 
+    render json: { errors: @user.errors.full_messages}, status: :unprocessable_entity
+  end
 end
-def edit 
-  
+def edit
+
 end
 def update
   if @current_user.update(user_params)

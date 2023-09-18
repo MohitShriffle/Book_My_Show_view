@@ -1,38 +1,75 @@
-<%
-=begin%>
- <% if @theaters.blank? %>
-<p>There are not any books currently in the system.</p>
-<% else %>
-<p>These are the current books in our system</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theater List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
 
-<ul id = "Theater">
-   <% @theaters.each do |c| %>
-   <li><%= link_to c.name, {:action => 'show', :id => c.id} -%></li>
-    <%= c.screens.name%> 
+    h1 {
+      color: #007bff;
+      text-align: center;
+      padding-top: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .theater {
+      margin-bottom: 20px;
+    }
+
+    .theater-name {
+      font-size: 24px;
+      color: #333;
+    }
+
+    .theater-location {
+      color: #777;
+    }
+
+    .actions {
+      margin-top: 10px;
+    }
+
+    .actions a {
+      text-decoration: none;
+      color: #007bff;
+      margin-right: 10px;
+    }
+     .flash-notice {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>Theater List</h1>
+  <div class="flash-notice"><%= flash[:notice] %></div>
+  <div class="container">
+    <%= link_to "Home", root_path %><br>
+    <%= link_to "Create New Theater", new_theater_path %><br>
     
-   <% end %>
-</ul>
-
-<% end %>
-<p><%= link_to "Add new Theater", {:action => 'new' }%></p> 
-<%
-=end%>
-<%= link_to "Home ",root_path%><br>
-<%= link_to "Create New Theater", new_theater_path %><br>
-<% @theaters.each do |theater| %>
-      <tr>
-        Name: <%= theater.name %><br>
-        Location: <%= theater.location%>
-        <br>
-        <td>
-
-        </td>
-        <td>
-        <%= link_to 'Show', theater%><br>
-         <br>
-          
-          <br>
-        </td> 
-
-      </tr>
-    <% end %><br>
+    <% @theaters.each do |theater| %>
+      <div class="theater">
+        <div class="theater-name">Name: <%= theater.name %></div>
+        <div class="theater-location">Location: <%= theater.location %></div>
+        <div class="actions">
+          <%= link_to 'Show', theater %><br>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</body>
+</html>

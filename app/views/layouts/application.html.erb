@@ -21,8 +21,7 @@
     </div>
     <div id="user_nav">
     <% if user_signed_in? %>
-        Signed in as <%= current_user.email %>&nbsp &nbsp &nbsp
-        <%= link_to 'Sign out', destroy_user_session_path %>
+        
     <% end %>
 </div>
 
@@ -30,6 +29,7 @@
     <% if alert %> <p class="alert alert-danger"><%= alert %></p> <% end %>
         <%= yield %> 
         <br>
+<%= link_to 'Sign out', destroy_user_session_path %>
 <center>
 <div style="background-color: #007BFF; padding: 10px;">
             <p style="color: #fff; font-size: 14px; margin: 0;">&copy; 2023 Book_My_Show</p>

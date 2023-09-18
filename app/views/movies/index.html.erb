@@ -1,88 +1,146 @@
-<%
-=begin%>
- 
-<center>
-<h1>All Movies</h1>
-</center>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Poster</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @movies.each do |movie| %>
-      <tr>
-        <td><%= movie.name %></td>
-        <td>
-          <% if movie.poster.attached? %>
-            <%= image_tag movie.poster %>
-          <% else %>
-            No Poster Available
-          <% end %>
-        </td>
-        <td>
-          <%= link_to 'Show', movie %>
-          <%= link_to 'Edit', edit_movie_path(movie) %>
-          <%= link_to 'Delete', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table> 
-<%
-=end%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<style>
-body {
-  background-image: url('img_girl.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100% 100%;
-}
-h1   {color: blue;}
-p    {color: red;}
-.small-image{
-  width:200px;
-  height: 300px;
-  margin:2px;
-  padding: 3px;
-}
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookMyShow - Movies</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('img_girl.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      color: #007bff;
+      text-align: center;
+      padding-top: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .movie-card {
+      display: flex;
+      margin-bottom: 20px;
+    }
+
+    .movie-details {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .movie-name {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .release-date {
+      color: #777;
+    }
+
+    .poster {
+      width: 200px;
+      height: 300px;
+      margin-right: 20px;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .actions {
+      margin-top: 10px;
+    }
+
+    .actions a {
+      text-decoration: none;
+      color: #007bff;
+      margin-right: 10px;
+    }
+
+    ul.navbar {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      background-color: #007bff;
+    }
+
+    ul.navbar li {
+      display: inline;
+      margin-right: 10px;
+    }
+
+    ul.navbar li a {
+      text-decoration: none;
+      color: #fff;
+    }
+    .topnav {
+  background-color: #333;
   overflow: hidden;
-  background-color: cyan ;
 }
-</style>
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: sky_blue;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: 87CEFA;
+  color: white;
+}
+
+  </style>
 </head>
 <body>
-<ul>
- <br>
-  <%= link_to "Create New movie", new_movie_path %><br>
-  <%= link_to "Theaters", theaters_path%>
-
-<% @movies.each do |movie| %>
-      <tr>
-        <h1><%= movie.name %></h1>
-        <h3>Release Date <%=movie.release_date%></h3>
-        <td>
-          <% if movie.poster.attached? %>
-            <%= image_tag(movie.poster.url, class: 'small-image') %><br>
-          <% else %>
-            No Poster Available
-          <% end %>
-        </td>
-        <td>
-          <%= link_to 'Show', movie %><br>
-          <%= link_to 'Delete', movie, method: :delete, data: { confirm: 'Are you sure?' } %><br>
-        </td>
-      </tr>
+ <div class="topnav">
+  <%= link_to "Home", root_path, class: 'active' %>
+  <%= link_to "News", "#news" %>
+  <%= link_to "Contact", "#contact" %>
+  <%=link_to 'search_movie',search_movie_by_name_path %>
+</div>
+  <h1>All Movies</h1>
+  <div class="container">
+    <% @movies.each do |movie| %>
+      <div class="movie-card">
+        <img src="<%= movie.poster.attached? ? movie.poster.url : 'no_poster_available.jpg' %>" alt="<%= movie.name %>" class="poster">
+        <div class="movie-details">
+          <div class="movie-name"><%= movie.name %></div>
+          <div class="release-date">Release Date: <%= movie.release_date %></div>
+          <div class="actions">
+          
+          <%if current_user.type=="Owner"%>
+            <%= link_to 'Show', movie %> |
+            <%= link_to 'Delete', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to "Create New Movie", new_movie_path %>
+          <%else%>
+            <%= link_to "Book Ticket",shows_path%>
+          <%end %>
+          </div>
+        </div>
+      </div>
     <% end %>
-</ul>
+  </div>
 </body>
+</html>

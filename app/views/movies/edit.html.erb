@@ -1,10 +1,14 @@
-<h1>Editing movie</h1>
+<center><h1>Edit Book Detail</h1>
 
-<%= render "form", movie: @movie %>
+<%= form_for @movie, :url =>{:action => "update", :id =>@movie} do |form| %>
+  <label for="name">Name</label>
+   <%= form.text_field :name ,id: "name"%><br><br>
+    <label for="release_date">Release Date</label>
+    <%= form.date_field :release_date, id: "release_date" %><br><br>
+    <label for="poster">Poster</label>
+    <%= form.file_field :poster, id: "poster" %><br><br>
+    <%= form.submit %><br>
+ <% end %>
 
-<br>
-
-<div>
-  <%= link_to "Show this movie", @movie %> |
-  <%= link_to "Back to movies", movies_path %>
-</div>
+<%= link_to 'Back', {:action => 'index' } %>
+</center>

@@ -1,10 +1,79 @@
-<p style="color: green"><%= notice %></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theater Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
 
-    Name: <%= @theater.name %><br>
-    Location: <%= @theater.location%>
-<div>
-  <%= link_to "Edit this Theater", edit_theater_path(@theater) %> |
-  <%= link_to "Back to Theater", theaters_path %>
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-  <%= button_to "Destroy this Theater", @theater, method: :delete %>
-</div>
+    h1 {
+      color: #007bff;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .theater-details {
+      margin-top: 20px;
+    }
+
+    .theater-name {
+      font-size: 24px;
+      color: #333;
+    }
+
+    .theater-location {
+      color: #777;
+    }
+
+    .actions {
+      margin-top: 20px;
+    }
+
+    .actions a {
+      text-decoration: none;
+      color: #007bff;
+      margin-right: 10px;
+    }
+
+    button.destroy-button {
+      background-color: #ff0000;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Theater Details</h1>
+    <p style="color: green"><%= notice %></p>
+    
+    <div class="theater-details">
+      <div class="theater-name">Name: <%= @theater.name %></div>
+      <div class="theater-location">Location: <%= @theater.location %></div>
+    </div>
+
+    <div class="actions">
+      <%= link_to "Edit this Theater", edit_theater_path(@theater) %> |
+      <%= link_to "Back to Theaters", theaters_path %>
+      <%= button_to "Destroy this Theater", @theater, method: :delete, class: 'destroy-button', data: { confirm: 'Are you sure?' } %>
+    </div>
+  </div>
+</body>
+</html>

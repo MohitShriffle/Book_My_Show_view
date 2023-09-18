@@ -1,38 +1,38 @@
 class ShowsController < ApplicationController
-  before_action :check_owner
-  
-  def index 
-    render json: Show.all  
+
+
+  def index
+    @shows=Show.all
   end
-  
-  def create 
+
+  def create
     show = Show.new(show_params)
     if show.save
       render json: show
     else
       render json: show.errors.full_messages
-    end                                                        
+    end
   end
-  
+
   def update
-    if @show.update(show_params) 
+    if @show.update(show_params)
       render json: @show
     else
       @show.errors.full_messages
-    end 
+    end
   end
-  
+
   def destroy
     if @show.destroy
       rander json: {message:"Show Deleted Succesfull"}
-    end 
+    end
   end
   private
-  
+
   def set_show
     @show=Show.find_by(params[:id])
   end
-  
+
   def show_params
     params.require(:show).permit(
       :movie_id,

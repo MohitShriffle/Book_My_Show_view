@@ -1,26 +1,77 @@
-<style>
-.small-image{
-  width:200px;
-  height: 300px;
-  margin:2px;
-  padding: 3px;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Movie Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
 
-</style>
-<p style="color: green"><%= notice %></p>
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-<h3 style="color: brown; padding-left: 75px"><%= @movie.name%></h3>
-<td style="width: auto; height: auto">
-    <% if @movie.poster.attached? %>
-      <%= image_tag(@movie.poster.url, class: 'small-image') %>
+    .small-image {
+      width: 200px;
+      height: 300px;
+      margin: 2px;
+      padding: 3px;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
 
-          <% else %>
-            No Poster Available
-          <% end %>
-        </td>
-<div>
-  <%= link_to "Edit this movie", edit_movie_path(@movie) %> |
-  <%= link_to "Back to movies", movies_path %>
+    h3 {
+      color: brown;
+      padding-left: 75px;
+    }
 
-  <%= button_to "Destroy this movie", @movie, method: :delete %>
-</div>
+    p {
+      color: green;
+    }
+
+    .button-group {
+      margin-top: 20px;
+    }
+
+    .button-group button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    .button-group button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p><%= notice %></p>
+    <h3><%= @movie.name %></h3>
+    <div>
+      <% if @movie.poster.attached? %>
+        <%= image_tag(@movie.poster.url, class: 'small-image') %>
+      <% else %>
+        No Poster Available
+      <% end %>
+    </div>
+    <div class="button-group">
+      <%= link_to "Edit this movie", edit_movie_path(@movie) %> |
+      <%= link_to "Back to movies", movies_path %> |
+      <%= button_to "Destroy this movie", @movie, method: :delete %>
+    </div>
+  </div>
+</body>
+</html>
