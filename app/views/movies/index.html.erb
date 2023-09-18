@@ -132,8 +132,9 @@
           
           <%if current_user.type=="Owner"%>
             <%= link_to 'Show', movie %> |
-            <%= link_to 'Delete', movie, method: :delete %>
-            <%= link_to "Create New Movie", new_movie_path %>
+            <%= link_to 'Delete', movie, method: :delete %> |
+            <%= link_to "Create New Movie", new_movie_path %> |
+            <%= link_to "Book Ticket",shows_path%>
           <%else%>
             <%= link_to "Book Ticket",shows_path%>
           <%end %>

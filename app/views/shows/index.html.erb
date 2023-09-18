@@ -1,3 +1,9 @@
 <h1>ALL Available Show</h1>
-<%= @shows%>
-<%debugger%>
+<%= @shows.each do |s|%>
+<h3><%=s.movie.name%></h3>
+<%DateTime Time =s.start_time%>
+<%=Time%>
+<%=s.end_time%>
+
+<%end%>
+

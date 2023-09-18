@@ -3,6 +3,12 @@ class ShowsController < ApplicationController
     @shows=Show.all
   end
   
+  def show 
+    
+  end
+  def new
+    
+  end
   def create
     show = Show.new(show_params)
     if show.save
@@ -33,6 +39,8 @@ class ShowsController < ApplicationController
   
   def show_params
     params.require(:show).permit(
+      :start_time,
+      :end_time,
       :movie_id,
       :screen_id
     )
