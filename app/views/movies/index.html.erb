@@ -116,8 +116,8 @@
 <body>
  <div class="topnav">
   <%= link_to "Home", root_path, class: 'active' %>
-  <%= link_to "News", "#news" %>
   <%= link_to "Contact", "#contact" %>
+  <%= link_to "Theaters", theaters_path %>
   <%=link_to 'search_movie',search_movie_by_name_path %>
 </div>
   <h1>All Movies</h1>
@@ -132,7 +132,7 @@
           
           <%if current_user.type=="Owner"%>
             <%= link_to 'Show', movie %> |
-            <%= link_to 'Delete', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Delete', movie, method: :delete %>
             <%= link_to "Create New Movie", new_movie_path %>
           <%else%>
             <%= link_to "Book Ticket",shows_path%>

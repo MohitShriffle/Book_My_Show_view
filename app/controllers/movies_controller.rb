@@ -53,19 +53,15 @@ class MoviesController < ApplicationController
     if name.blank?
       flash[:notice] = 'Name cannot be blank'
     else
-      movies = Movie.where("name LIKE ?", "%#{name}%")
+      movies = Movie.where("name ILIKE ?", "%#{name}%")
 
       if movies.empty?
         flash[:notice] = 'Movie Not Found'
       else
-        # Assuming you want to redirect to the first found movie if there are multiple matches
         redirect_to movie_path(movies.first)
         return
       end
     end
-
-    # Redirect back to the previous page (or any other desired page)
-    redirect_back fallback_location: root_path
   end
 
   private

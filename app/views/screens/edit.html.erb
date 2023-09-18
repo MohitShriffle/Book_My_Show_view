@@ -1,0 +1,30 @@
+  <html>
+    <head>
+    <style>
+      .flash-notice{
+        color: red;
+      }
+    </style>
+    </head>
+      <body>
+        <div class="container">
+          <h1>Edit screen</h1>
+          <div class="flash-notice"><%= flash[:notice] %></div>
+              <%= form_for @screen, :url =>{:action => "update", :id =>@screen} do |form| %>
+                <label for="screen_name">Name</label>
+                <%= form.text_field :screen_name ,id: "screen_name"%><br><br>
+                  
+                <label for="capacity">Capacity</label>
+                <%= form.text_field :capacity, id: "capacity" %><br><br>
+                  
+                <%= form.submit %><br>
+              <% end %>
+        <div class="back-link">
+            <%= link_to "Back to screens", screens_path %>
+        </div>
+        <div class="back-link">
+            <%= link_to "Back to Home", root_path %>
+        </div>
+       </div>
+      </body>
+</html>
