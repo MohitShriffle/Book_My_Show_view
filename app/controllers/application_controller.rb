@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
-  # protect_from_forgery
-
-  include JwtToken
+  
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
   before_action :current_user
@@ -18,17 +16,6 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def check_owner
-    # return render json: {message: "User not an Owner"} unless current_user.owner?
-    unless current_user.owner?
-    flash[:notice] = 'You are not Owner'
-    return
-    end
-  end
-
-  def check_customer
-    return render json: {message: "User not an Customer"} unless current_user.customer?
-  end
 
   rescue_from ActiveRecord::RecordNotFound, with: :handle_exception
 
