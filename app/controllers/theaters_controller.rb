@@ -10,10 +10,7 @@ class TheatersController < ApplicationController
     
   end
   def new
-    @theater = Book.new
-    debugger
-    authorize! :create, @theater
-    render :new
+ 
   end
   def create
     theater=@current_user.theaters.new(theater_params)

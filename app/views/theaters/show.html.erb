@@ -71,7 +71,8 @@
 
     <div class="actions">
       <%= link_to "Edit this Theater", edit_theater_path(@theater) %> |
-      <%= link_to "Back to Theaters", theaters_path %>
+      <%= link_to "Back to Theaters", theaters_path %> |
+      <%= link_to 'Theater_screens', theater_screens_path(@theater)%><br>
       <%= button_to "Destroy this Theater", @theater, method: :delete, class: 'destroy-button', data: { confirm: 'Are you sure?' } %>
     </div>
   </div>

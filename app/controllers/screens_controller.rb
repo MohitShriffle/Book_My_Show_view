@@ -1,25 +1,24 @@
 class ScreensController < ApplicationController
   
-  before_action :set_screen ,only: [:update, :destroy, :edit] 
+  before_action :set_screen ,only: [:update, :destroy, :edit,:show] 
   
-  def index 
-    @screens=Screen.all
+  def index
+    theater=Theater.find_by(id: params[:theater_id])
+    @screens=theater.screens
   end
   
   def show 
-    @theater =Theater.find_by(id: params[:id])
-    if @theater
-      @screens=@theater.screens
-    end
   end
   
   def new
+    @screen=Screen.new
+    @theater=Theater.find(params[:theater_id])
   end
   
   def create
     screen=Screen.new(screen_params)
     if screen.save
-      redirect_to screens_path
+      redirect_to theater_screens_path(screen.theater_id)
     else
       flash[:notice] = 'Screen Not created '
     end
@@ -31,8 +30,7 @@ class ScreensController < ApplicationController
   
   def update
     if @screen.update(screen_params)
-      id=@screen.theater.id
-      redirect_to screen_path(id)
+      redirect_to screen_path(@screen)
     else
       flash[:notice] = 'Screen Not Updated '
     end

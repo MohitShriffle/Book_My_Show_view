@@ -7,20 +7,18 @@
 <body>
     <div class="container">
         <h1>New Movie</h1>
-        <%= form_with url: "/movies", method: :post do |form| %>
-            <label for="name">Name</label>
-            <%= form.text_field :name ,id: "name"%><br><br>
+    <%= form_with model: @show,local: true do |form| %>            
+              <label for="start_time">Start_time</label>
+            <%= form.date_field :start_time ,id: "start_time"%><br><br>
             
-            <label for="release_date">Release Date</label>
-            <%= form.date_field :release_date, id: "release_date" %><br><br>
-            <label for="poster">Poster</label>
-            <%= form.file_field :poster, id: "poster" %><br><br>
+            <label for="End_time">End Time</label>
+            <%= form.date_field :end_time, id: "end_time"%><br><br>
 
             <%= form.submit %><br>
         <% end %>
 
         <div class="back-link">
-            <%= link_to "Back to movies", movies_path %>
+            <%= link_to "Back to Screen", screens_path %>
         </div>
       </div>
 </body>

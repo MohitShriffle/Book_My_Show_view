@@ -1,10 +1,10 @@
-<h1> All screens in this theater</h1>
-<%= link_to "Create_Screen",new_screen_path(@theater)%><br>
-<%@screens.each do |screen|%>
-<h3>screen name : <%=screen.screen_name%></h3>
-<h3>screen capacity : <%=screen.capacity%>
-<h3>Theater name : <%=screen.theater.name%></h3>
+<h1> </h1>
 
-<%= link_to "Edit_screen", edit_screen_path(screen.id)%><br>
-<%= link_to 'Destroy', screen,method: :delete,data:{confirm: 'Are you sure?'} %>
-<%end%>
+<h3>screen name : <%=@screen.screen_name%></h3>
+<h3>screen capacity : <%=@screen.capacity%>
+<h3>Theater name : <%=@screen.theater.name%></h3>
+
+<%= link_to "Edit_screen", edit_screen_path(@screen)%><br>
+<%= link_to 'Destroy', @screen,method: :delete,data:{confirm: 'Are you sure?'}%><br>
+<%= link_to 'Back_to_screens', theater_screens_path(@screen.theater)%><br>
+

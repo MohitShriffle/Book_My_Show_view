@@ -12,6 +12,48 @@
  <%= javascript_importmap_tags %> 
 <%
 =end%>
+
+<style>
+ ul.navbar {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      background-color: #007bff;
+    }
+
+    ul.navbar li {
+      display: inline;
+      margin-right: 10px;
+    }
+
+    ul.navbar li a {
+      text-decoration: none;
+      color: #fff;
+    }
+    .topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+
+.topnav a:hover {
+  background-color: sky_blue;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: 87CEFA;
+  color: white;
+}
+</style>
   </head>
    
   <body>
@@ -19,9 +61,15 @@
           <p style="color: #fff; font-size: 14px; margin: 0;">Book_My_Show</p>
 
     </div>
+    
     <div id="user_nav">
     <% if user_signed_in? %>
-        
+         <div class="topnav">
+  <%= link_to "Home", root_path, class: 'active' %>
+  <%= link_to "Contact", "#contact" %>
+  <%= link_to "Theaters", theaters_path %>
+  <%=link_to 'search_movie',search_movie_by_name_path %>
+</div>
     <% end %>
 </div>
 

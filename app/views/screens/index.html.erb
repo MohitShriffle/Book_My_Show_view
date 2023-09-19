@@ -1,4 +1,8 @@
 <h1>All screens</h1>
 <%@screens.each do |screen|%>
-<%=screen.theater.name%>
+<h3>Screen Name : <%=screen.screen_name%></h3>
+<h3>Capacity :<%=screen.capacity%></h3>
+<%= link_to "Show_Screen", screen_path(screen)%><br>
 <%end%>
+<%= link_to 'Create_New_screens', new_theater_screen_path%><br> 
+<%= link_to 'Back_to_Theater',theaters_path%><br>

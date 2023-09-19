@@ -1,7 +1,7 @@
 class MovieSerializer < ActiveModel::Serializer
-  attributes :id,:name, :posters
+  attributes :id,:name
   has_many :shows
-  def posters
-    object.poster.url 
-  end
+  # def posters
+  #   object.poster.url 
+  # end
 end

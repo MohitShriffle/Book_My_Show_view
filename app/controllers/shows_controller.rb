@@ -7,7 +7,7 @@ class ShowsController < ApplicationController
     
   end
   def new
-    
+    @show=Show.new
   end
   def create
     show = Show.new(show_params)

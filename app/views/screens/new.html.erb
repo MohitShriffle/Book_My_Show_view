@@ -1,22 +1,22 @@
     <html>
-    <head>
-    </head>
-    <body>
-    
-    <div class="container">
-      <h1>New screen</h1>
-        <%= form_with url: "/screens", method: :post do |form| %>
-            <label for="screen_name">Name</label>
-            <%= form.text_field :name ,id: "screen_name"%><br><br>
-            
-            <label for="capacity">Capacity</label>
-            <%= form.text_field :capacity, id: "capacity" %><br><br>
-            
-            <%= form.submit %><br>
-        <% end %>
-        <div class="back-link">
-            <%= link_to "Back to screens", screens_path %>
-        </div>
+      <head>
+        </head>
+          <body>
+            <div class="container">
+              <h1>New screen</h1>
+                <%= form_with model: @screen,local: true do |form| %>
+                <%= form.hidden_field :theater_id, value: @theater.id %> 
+                <label for="screen_name">Name</label>
+                <%= form.text_field :screen_name ,id: "screen_name"%><br><br>
+                
+                <label for="capacity">Capacity</label>
+                <%= form.text_field :capacity, id: "capacity" %><br><br>
+                
+                <%= form.submit 'create screen'%><br>
+                  <% end %>
+                  <div class="back-link">
+                 <%= link_to "Back to Theater", theaters_path %>
+            </div>
         <div class="back-link">
             <%= link_to "Back to Home", root_path %>
         </div>
