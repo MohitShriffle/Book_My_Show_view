@@ -6,16 +6,21 @@
   </head>
 <body>
     <div class="container">
-        <h1>New Movie</h1>
-    <%= form_with model: @show,local: true do |form| %>            
+        <h1>New Show</h1>
+        
+
+             
+    <%= form_with model: @show do |form| %>   
+    <%= form.hidden_field :screen_id, value: @screen.id %>          
               <label for="start_time">Start_time</label>
-            <%= form.date_field :start_time ,id: "start_time"%><br><br>
+            <%= form.time_field :start_time ,id: "start_time"%><br><br>
             
             <label for="End_time">End Time</label>
-            <%= form.date_field :end_time, id: "end_time"%><br><br>
-
-            <%= form.submit %><br>
-        <% end %>
+             <%= form.time_field :end_time, id: "end_time"%><br><br>
+              <%= form.select :movie_id, options_for_select(@movie.map { |movie| [movie.name, movie.id] })%>            
+                
+                <%= form.submit %><br>
+              <% end %>
 
         <div class="back-link">
             <%= link_to "Back to Screen", screens_path %>

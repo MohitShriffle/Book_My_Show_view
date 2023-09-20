@@ -37,12 +37,11 @@ class ScreensController < ApplicationController
   end
   
   def destroy
-    debugger
     if @screen.destroy
-      debugger
-      render json: {message: "Screen Deleted Succusfull"}
+      flash[:notice] = 'Screen Deleted Sucessfully' 
+      redirect_to theaters_path
     else
-      render json: @screen.errors.full_messages
+      flash[:notice] = 'Screen Not Deleted'
     end
   end
   

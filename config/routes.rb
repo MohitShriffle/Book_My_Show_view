@@ -17,10 +17,10 @@ Rails.application.routes.draw do
   resources :users
   resources :theaters
 
-  resources :movies
-  # resources :shows
   resources :tickets
-  
+  resources :movies do
+    resources :shows
+  end
   resources :movies
   get "/search_movie_by_name", to: "movies#search_movie_by_name"
   post"/search_movie", to: "movies#search_movie"

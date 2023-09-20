@@ -1,18 +1,22 @@
 class ShowsController < ApplicationController
+  before_action :set_show ,only: [:show,:update,:destroy]
   def index
-    @shows=Show.all
+    movie=Movie.find(params[:movie_id])
+    @shows=movie.shows 
   end
   
-  def show 
-    
+  def show
+    #  @screen=Screen.find(params[:screen_id])
   end
   def new
     @show=Show.new
+    @movie=Movie.all
+    @screen=Screen.find(params[:screen_id])
   end
   def create
     show = Show.new(show_params)
     if show.save
-      render json: show
+      redirect_to show_path(show)
     else
       render json: show.errors.full_messages
     end
@@ -34,7 +38,7 @@ class ShowsController < ApplicationController
   private
   
   def set_show
-    @show=Show.find_by(params[:id])
+    @show=Show.find(params[:id])
   end
   
   def show_params

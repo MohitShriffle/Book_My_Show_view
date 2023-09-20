@@ -1,9 +1,19 @@
-<h1>ALL Available Show</h1>
-<%= @shows.each do |s|%>
-<h3><%=s.movie.name%></h3>
-<%DateTime Time =s.start_time%>
-<%=Time%>
-<%=s.end_time%>
+<html>
+<head>
+<head>
+  <body>
+    <h3>Movie all Show<h3>
+    <%@shows.each do |show|%>
+       
+      <h5>Theater Name :<%= show.screen.theater.name%></h5>
+      <h5>Start Time :<%= show.start_time %><h5>
+      <h5>End Time :<%= show.end_time %></h5> 
+      <h5>Movie Name:<%= show.movie.name%></h5>
+      <h5> screen_id:<%= show.screen.id%></h5>
+      <h5> screen_name:<%= show.screen.screen_name%></h5>
+<h1>----------------------------------------------------------</h1>
+  <%link_to %>
 
-<%end%>
-
+    <%end%>
+  </body>
+</html>

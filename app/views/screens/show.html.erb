@@ -1,10 +1,31 @@
-<h1> </h1>
 
+<html>
+<head>
+<style>
+    
+    button.destroy-button {
+      background-color: #ff0000;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }     
+
+</style>
+<head>
+<body>
+<h1> </h1>
+<div class="flash-notice"><%= flash[:notice] %>
+</div>
+<div>
 <h3>screen name : <%=@screen.screen_name%></h3>
 <h3>screen capacity : <%=@screen.capacity%>
 <h3>Theater name : <%=@screen.theater.name%></h3>
 
 <%= link_to "Edit_screen", edit_screen_path(@screen)%><br>
-<%= link_to 'Destroy', @screen,method: :delete,data:{confirm: 'Are you sure?'}%><br>
+<%= button_to "Destroy", @screen, method: :delete , class: "destroy-button"%><br>
 <%= link_to 'Back_to_screens', theater_screens_path(@screen.theater)%><br>
-
+<%= link_to 'Create_New_Show', new_screen_show_path(@screen)%>
+</div>
+</body>
+</html>

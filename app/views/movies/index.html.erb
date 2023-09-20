@@ -67,9 +67,6 @@
       color: #007bff;
       margin-right: 10px;
     }
-
-   
-
   </style>
 </head>
 <body>
@@ -86,11 +83,10 @@
           
           <%if current_user.type=="Owner"%>
             <%= link_to 'Show', movie %> |
-            <%= link_to 'Delete', movie, method: :delete %> |
             <%= link_to "Create New Movie", new_movie_path %> |
-            <%= link_to "Book Ticket",shows_path%>
+            <%= link_to "Book Ticket",movie_shows_path(movie)%>
           <%else%>
-            <%= link_to "Book Ticket",shows_path%>
+           <%= link_to "Book Ticket",movie_shows_path(movie)%>
           <%end %>
           </div>
         </div>

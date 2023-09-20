@@ -13,13 +13,12 @@ class MoviesController < ApplicationController
   end
   def new
     @movie = Movie.new
-    authorize! :create, @movie
-    render :new
   end
   
   def create
     movie=Movie.new(movie_params)
     if movie.save
+      debugger
       redirect_to movie_path(movie)
     else
       movie.errors.full_messages
