@@ -1,0 +1,12 @@
+  <h1>Booking<h1>
+
+<%= form_with model: @ticket do |form| %>
+
+<%= form.hidden_field :show_id, value: @show.id %>   
+
+<label for="ticket_purchased">Number of ticket</label>
+<%= form.text_field :ticket_purchased ,id: "ticket_purchased"%>
+
+<%= form.submit %><br>
+<%end%>
+          

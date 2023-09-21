@@ -2,9 +2,9 @@ class TicketsController < ApplicationController
 
   
    def index 
-    booking_history=@current_user.tickets 
-    if booking_history.presence
-      render json: booking_history
+    @booking_history=@current_user.tickets 
+    if @booking_history.presence
+      # render json: @booking_history
     else
       render json: {message: "booking history not available for you"}
     end
@@ -23,10 +23,14 @@ class TicketsController < ApplicationController
     end
   end
   
-  def create
-    total_tickets = params[:ticket_purchased].to_i
-    show = Show.find(params[:show_id])
+  def new
+    @ticket=Ticket.new
+    @show=Show.find(params[:show_id])
+  end
   
+  def create
+      total_tickets = params[:ticket][:ticket_purchased].to_i
+    show = Show.find(params[:ticket][:show_id])  
     if show.nil?
       render json: { message: "Show is not available" }
     elsif show.screen.capacity < total_tickets
@@ -38,12 +42,16 @@ class TicketsController < ApplicationController
         ActiveRecord::Base.transaction do
           t.save
           show.screen.update(capacity: show.screen.capacity - total_tickets)
-          render json: { message: "Tickets booked successfully" }
+          redirect_to tickets_path
       end
       else
         render json: { errors: t.errors.full_messages }, status: :unprocessable_entity
       end
     end
+  end
+  
+  def ticket_params
+    params.require(:ticket).permit(:show_id, :user_id, :ticket_purchased)
   end
 
 end

@@ -1,0 +1,8 @@
+<%@booking_history.each do |t|%>
+<h5>Ticket Id :<%=t.unique_id%></h5>
+<h5>User :<%=t.user.name%></h5>
+<h5>Theater Name :<%=t.show.screen.theater.name%></h5>
+<h5><%=t.show.movie.name%></h5> 
+<h1>----------------------------------------------</h1>
+
+<%end%>
