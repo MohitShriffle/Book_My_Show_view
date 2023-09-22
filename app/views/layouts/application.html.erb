@@ -60,9 +60,9 @@
     
     <div id="user_nav">
     <% if user_signed_in? %>
-         <div class="topnav">
+    <div class="topnav">
   <%= link_to "Home", root_path, class: 'active' %>
-  <%= link_to "Contact", "#contact" %>
+  <%= link_to "Search_Tickets", search_tickets_by_id_path %>
   <%= link_to "Theaters", theaters_path %>
   <%=link_to 'search_movie',search_movie_by_name_path %>
 </div>
@@ -75,9 +75,9 @@
         <br>
 <%= link_to 'Sign out', destroy_user_session_path %>
 <center>
-<div style="background-color: #007BFF; padding: 10px;">
-            <p style="color: #fff; font-size: 14px; margin: 0;">&copy; 2023 Book_My_Show</p>
+  <div style="background-color: #007BFF; padding: 10px;">
+        <p style="color: #fff; font-size: 14px; margin: 0;">&copy; 2023 Book_My_Show</p>
       </div>
-  </center>
+</center>
   </body>
 </html>

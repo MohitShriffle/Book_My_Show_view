@@ -10,8 +10,7 @@
         
 
              
-    <%= form_with model: @show do |form| %>   
-    <%= form.hidden_field :screen_id, value: @screen.id %>          
+    <%= form_with model: [@screen, @show] do |form| %>   
               <label for="start_time">Start_time</label>
             <%= form.time_field :start_time ,id: "start_time"%><br><br>
             

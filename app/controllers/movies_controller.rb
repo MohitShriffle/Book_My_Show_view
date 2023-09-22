@@ -1,6 +1,4 @@
 class MoviesController < ApplicationController
-  
-  # before_action :set_value, only:[:update, :destroy,:edit]
   load_and_authorize_resource
   
   def index
@@ -10,7 +8,9 @@ class MoviesController < ApplicationController
   end
   
   def show
+    debugger
   end
+  
   def new
     @movie = Movie.new
   end
@@ -53,7 +53,6 @@ class MoviesController < ApplicationController
       flash[:notice] = 'Name cannot be blank'
     else
       movies = Movie.where("name ILIKE ?", "%#{name}%")
-      
       if movies.empty?
         flash[:notice] = 'Movie Not Found'
       else

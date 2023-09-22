@@ -26,6 +26,6 @@ Rails.application.routes.draw do
   post"/search_movie", to: "movies#search_movie"
   get "/search_tickets",to: "tickets#search_tickets"
   root "users#index"
-  # root "users#index"
   get "/login", to: "users#login"
+  get "/search_tickets_by_id", to: "tickets#search_tickets_by_id"
 end

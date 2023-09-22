@@ -1,5 +1,6 @@
 class ShowsController < ApplicationController
   before_action :set_show ,only: [:show,:update,:destroy]
+  before_action :find_screen, only: [:create,:new]
   def index
     movie=Movie.find(params[:movie_id])
     @shows=movie.shows 
@@ -11,14 +12,16 @@ class ShowsController < ApplicationController
   def new
     @show=Show.new
     @movie=Movie.all
-    @screen=Screen.find(params[:screen_id])
+    
   end
   def create
-    show = Show.new(show_params)
-    if show.save
-      redirect_to show_path(show)
+    debugger
+    @show = @screen.build_show(show_params)
+    debugger
+    if @show.save
+      redirect_to show_path(@show)
     else
-      render json: show.errors.full_messages
+      render json: @show.errors.full_messages
     end
   end
   
@@ -45,8 +48,11 @@ class ShowsController < ApplicationController
     params.require(:show).permit(
       :start_time,
       :end_time,
-      :movie_id,
-      :screen_id
+      :movie_id
     )
+  end
+  def find_screen
+    @screen=Screen.find_by(id: params[:screen_id])
+    redirect_to tickets_path and return unless @screen 
   end
 end

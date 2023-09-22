@@ -1,15 +1,19 @@
 class TicketsController < ApplicationController
+  before_action :find_show, only: [:new, :create]
 
   
-   def index 
-    @booking_history=@current_user.tickets 
+   def index  
+    @booking_history=current_user.tickets
     if @booking_history.presence
-      # render json: @booking_history
+      
     else
       render json: {message: "booking history not available for you"}
     end
   end
-  
+
+  def search_tickets_by_id
+  end
+
   def search_tickets
     id=params[:unique_id]
     unless id.presence
@@ -24,34 +28,31 @@ class TicketsController < ApplicationController
   end
   
   def new
-    @ticket=Ticket.new
-    @show=Show.find(params[:show_id])
+    @ticket = Ticket.new
   end
   
   def create
-      total_tickets = params[:ticket][:ticket_purchased].to_i
-    show = Show.find(params[:ticket][:show_id])  
-    if show.nil?
-      render json: { message: "Show is not available" }
-    elsif show.screen.capacity < total_tickets
-      render json: { errors: 'Not enough available seats' }, status: :unprocessable_entity
-    else
-      t = Ticket.new(ticket_purchased: total_tickets, user: @current_user, show: show)
-  
-      if t.valid?
+    @ticket = @show.tickets.new(ticket_params)
+      @ticket.user = current_user
+      if @ticket.valid?
         ActiveRecord::Base.transaction do
-          t.save
-          show.screen.update(capacity: show.screen.capacity - total_tickets)
-          redirect_to tickets_path
-      end
+        @ticket.save
+        @show.screen.update(capacity: @show.screen.capacity)
+        redirect_to tickets_path
+        end
       else
-        render json: { errors: t.errors.full_messages }, status: :unprocessable_entity
+        redirect_to tickets_path
       end
-    end
+    
   end
   
   def ticket_params
-    params.require(:ticket).permit(:show_id, :user_id, :ticket_purchased)
+    params.require(:ticket).permit(:ticket_purchased)
+  end
+
+  def find_show
+    @show = Show.find_by(id: params[:show_id])
+    redirect_to tickets_path and return unless @show
   end
 
 end
