@@ -6,8 +6,8 @@
     <%@shows.each do |show|%>
        
       <h5>Theater Name :<%= show.screen.theater.name%></h5>
-      <h5>Start Time :<%= show.start_time.time %><h5>
-      <h5>End Time :<%= show.end_time %></h5> 
+      <h5>Start Time :<%= show.start_time.strftime('%I:%M %p') %><h5>
+      <h5>End Time :<%= show.end_time.strftime('%I:%M %p') %></h5> 
       <h5>Movie Name:<%= show.movie.name%></h5>
       <h5> screen_id:<%= show.screen.id%></h5>
       <h5> screen_name:<%= show.screen.screen_name%></h5>

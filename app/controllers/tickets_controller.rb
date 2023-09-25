@@ -1,11 +1,11 @@
 class TicketsController < ApplicationController
   before_action :find_show, only: [:new, :create]
 
-  
-   def index  
+
+   def index
     @booking_history=current_user.tickets
     if @booking_history.presence
-      
+
     else
       render json: {message: "booking history not available for you"}
     end
@@ -26,26 +26,30 @@ class TicketsController < ApplicationController
       render json: {errors: "No ticket prensent for your id"}
     end
   end
-  
+
   def new
     @ticket = Ticket.new
   end
-  
+
   def create
     @ticket = @show.tickets.new(ticket_params)
       @ticket.user = current_user
       if @ticket.valid?
-        ActiveRecord::Base.transaction do
-        @ticket.save
-        @show.screen.update(capacity: @show.screen.capacity)
-        redirect_to tickets_path
+        if (@show.screen.capacity > params[:ticket][:ticket_purchased].to_i)
+          ActiveRecord::Base.transaction do
+            @ticket.save
+            @show.screen.update(capacity: @show.screen.capacity-params[:ticket][:ticket_purchased].to_i)
+            redirect_to tickets_path
+          end
+        else
+          redirect_to movies_path
         end
       else
         redirect_to tickets_path
       end
-    
+
   end
-  
+
   def ticket_params
     params.require(:ticket).permit(:ticket_purchased)
   end
@@ -56,4 +60,3 @@ class TicketsController < ApplicationController
   end
 
 end
-

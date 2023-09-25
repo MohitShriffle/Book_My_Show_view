@@ -78,9 +78,8 @@
         <img src="<%= movie.poster.attached? ? movie.poster.url : 'no_poster_available.jpg' %>" alt="<%= movie.name %>" class="poster">
         <div class="movie-details">
           <div class="movie-name"><%= movie.name %></div>
-          <div class="release-date">Release Date: <%= movie.release_date %></div>
+          <div class="release-date">Release Date: <%= movie.release_date.strftime('%d-%m-%y') %></div>
           <div class="actions">
-          
           <%if current_user.type=="Owner"%>
             <%= link_to 'Show', movie %> |
             <%= link_to "Create New Movie", new_movie_path %> |
