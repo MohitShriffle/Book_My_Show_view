@@ -28,7 +28,7 @@ class MoviesController < ApplicationController
 
   def update
     if @movie.update(movie_params)
-      redirect_to movie_url(@movie)
+      redirect_to movie_path(@movie)
     else
       render json: @movie.errors.full_messages
     end
@@ -61,7 +61,6 @@ class MoviesController < ApplicationController
   end
 
   private
-
   def movie_params
     params.require(:movie).permit(:name, :release_date, :poster)
   end

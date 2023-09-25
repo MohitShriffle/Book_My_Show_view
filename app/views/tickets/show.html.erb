@@ -1,0 +1,6 @@
+
+<p><strong>Ticket Id :</strong> <%=@ticket.unique_id%></p>
+<p><strong>User :</strong> <%=@ticket.user.name%></p>
+<p><strong>Theater Name :</strong> <%=@ticket.show.screen.theater.name%></p>
+<p><strong>Movie Name :</strong> <%=@ticket.show.movie.name%></p>
+<%= button_to "Destroy this ticket", @ticket, method: :delete %>

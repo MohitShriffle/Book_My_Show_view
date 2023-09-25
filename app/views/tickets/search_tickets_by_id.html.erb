@@ -1,4 +1,7 @@
-<%= form_with url: "/search_movie", method: :post do |form| %>
+ <p><%= flash[:status_msg] %></p>
+<%= form_with url: "/search_tickets", method: :post do |form| %>
+
+<p><strong>Enter your ticket id</strong></p>
 <%=form.text_field :unique_id, id: "unique_id"%>
 
 <%= form.submit%>

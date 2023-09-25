@@ -53,13 +53,10 @@
             text-align: center;
             margin-top: 10px;
         }
-      .flash-notice {
-      color: red;
-    }
+
 </style>
 <body>
   <div class="container">
-    <div class="flash-notice"><%= flash[:notice] %></div>
     <%= form_with url: "/search_movie", method: :post do |form| %>
       <label for="name">Name</label>
       <%= form.text_field :name, id: "name" %><br><br>

@@ -39,7 +39,7 @@ class TheatersController < ApplicationController
       render json: @theater.errors.full_messages
     end
   end
-  
+  private
   def theater_params
     params.require(:theater).permit(:name, :location, screens_attributes: [:screen_name, :capacity])
   end

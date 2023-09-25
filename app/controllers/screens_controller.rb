@@ -45,6 +45,7 @@ class ScreensController < ApplicationController
     end
   end
   
+  private
   def set_screen
     @screen =Screen.find(params[:id])
   end

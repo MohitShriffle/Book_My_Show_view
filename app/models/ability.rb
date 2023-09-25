@@ -11,6 +11,9 @@ class Ability
       can :read ,Movie
       can :search_movie ,Movie
       can :search_movie_by_name ,Movie
+      can :search_tickets,Ticket
+      can :search_tickets_by_id,Ticket
+      can :destroy,Ticket
     end
   end
 end

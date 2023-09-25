@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    
- 
-
 <style>
  ul.navbar {
       list-style-type: none;
@@ -29,7 +25,7 @@
     .topnav {
   background-color: #333;
   overflow: hidden;
-}
+  }
 .topnav a {
   float: left;
   color: #f2f2f2;
@@ -53,31 +49,29 @@
   </head>
    
   <body>
-      <div style="background-color: #007BFF; padding: 10px; text-align: center;">
-          <p style="color: #fff; font-size: 14px; margin: 0;">Book_My_Show</p>
-
-    </div>
-    
+  <div style="background-color: #007BFF; padding: 10px; text-align: center;">
+    <p style="color: #fff; font-size: 14px; margin: 0;">Book_My_Show</p>
+  </div>
     <div id="user_nav">
     <% if user_signed_in? %>
     <div class="topnav">
   <%= link_to "Home", root_path, class: 'active' %>
-  <%= link_to "Search_Tickets", search_tickets_by_id_path %>
+  <%= link_to "Tickets", tickets_path %>
   <%= link_to "Theaters", theaters_path %>
   <%=link_to 'search_movie',search_movie_by_name_path %>
 </div>
     <% end %>
 </div>
 
-    <% if notice %> <p class="alert alert-success"><%= notice %></p> <% end %>
-    <% if alert %> <p class="alert alert-danger"><%= alert %></p> <% end %>
-        <%= yield %> 
-        <br>
+<div class="flash"><%= flash[:notice] %></div>
+  <% if alert %> <p class="alert alert-danger"><%= alert %></p> <% end %>
+    <%= yield %> 
+    <br>
 <%= link_to 'Sign out', destroy_user_session_path %>
 <center>
   <div style="background-color: #007BFF; padding: 10px;">
-        <p style="color: #fff; font-size: 14px; margin: 0;">&copy; 2023 Book_My_Show</p>
-      </div>
+    <p style="color: #fff; font-size: 14px; margin: 0;">&copy; 2023 Book_My_Show</p>
+  </div>
 </center>
-  </body>
+</body>
 </html>

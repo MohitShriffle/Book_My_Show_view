@@ -1,8 +1,20 @@
-<%@booking_history.each do |t|%>
-<h5>Ticket Id :<%=t.unique_id%></h5>
-<h5>User :<%=t.user.name%></h5>
-<h5>Theater Name :<%=t.show.screen.theater.name%></h5>
-<h5><%=t.show.movie.name%></h5> 
-<h1>----------------------------------------------</h1>
+<html>
+<head>
+<style>
+  .flash{
+    color: red;
+  }
+</style>
 
+<head>
+<body>
+<%= link_to "Search_Tickets", search_tickets_by_id_path %>
+<%@booking_history.each do |t|%>
+<p><strong>Ticket Id :</strong> <%=t.unique_id%></p>
+<p><strong>Theater Name :</strong> <%=t.show.screen.theater.name%></p>
+<p><strong>Movie Name :</strong> <%=t.show.movie.name%></p>
+<p><strong>Theater Loacation:</strong><%=t.show.screen.theater.location%>
+<h5>--------------------------------------------------------------</h5>
 <%end%>
+</body>
+</html>

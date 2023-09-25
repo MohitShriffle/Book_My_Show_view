@@ -37,8 +37,8 @@ class ShowsController < ApplicationController
       rander json: {message:"Show Deleted Succesfull"}
     end
   end
+  
   private
-
   def set_show
     @show=Show.find(params[:id])
   end

@@ -7,7 +7,7 @@ class Ticket < ApplicationRecord
   
   private 
   def generate_unique_id
-    unique_id = SecureRandom.hex(4) 
+    unique_id = SecureRandom.hex(6) 
     self.unique_id = unique_id
   end
 end

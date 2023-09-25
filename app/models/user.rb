@@ -14,7 +14,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validate  :validate_email
  
-  # private
+  
   def validate_email
     if (email =~ /^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$/).nil?
       errors.add(:email, 'please enter a valid email')
