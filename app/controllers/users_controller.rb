@@ -1,12 +1,9 @@
 class UsersController < ApplicationController
 def index
-  redirect_to movies_path
+  @users=User.all
 end
 
 def show
-end
-
-def login;
 end
 
 def new
@@ -27,7 +24,7 @@ end
 
 def update
   if @current_user.update(user_params)
-    render json: @current_user
+    redirect_to profile_path
   else
     render json: @current_user.errors.full_messages
   end

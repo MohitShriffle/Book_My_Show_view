@@ -6,45 +6,51 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 <style>
- ul.navbar {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      background-color: #007bff;
-    }
-
-    ul.navbar li {
-      display: inline;
-      margin-right: 10px;
-    }
-
-    ul.navbar li a {
-      text-decoration: none;
-      color: #fff;
-    }
-    .topnav {
+ ul.navbar
+ {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #007bff;
+ }
+ ul.navbar li 
+ {
+  display: inline;
+  margin-right: 10px;
+ }
+ ul.navbar li a 
+ {
+  text-decoration: none;
+  color: #fff;
+ }
+ .topnav 
+ {
   background-color: #333;
   overflow: hidden;
-  }
-.topnav a {
+ }
+.topnav a 
+ {
   float: left;
   color: #f2f2f2;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
-}
-
-
-.topnav a:hover {
+ } 
+ .topnav a:hover 
+ {
   background-color: sky_blue;
   color: black;
-}
-
-.topnav a.active {
+ }
+ .topnav a.active 
+ {
   background-color: 87CEFA;
   color: white;
-}
+ }
+ .profile
+ {
+  margin-left: 455px;
+ }
 </style>
   </head>
    
@@ -59,6 +65,7 @@
   <%= link_to "Tickets", tickets_path %>
   <%= link_to "Theaters", theaters_path %>
   <%=link_to 'search_movie',search_movie_by_name_path %>
+  <%=link_to "Profile",profile_path, class:'profile'%>
 </div>
     <% end %>
 </div>

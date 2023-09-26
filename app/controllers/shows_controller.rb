@@ -12,7 +12,6 @@ class ShowsController < ApplicationController
   def new
     @show=Show.new
     @movie=Movie.all
-
   end
   def create
     @show = @screen.build_show(show_params)

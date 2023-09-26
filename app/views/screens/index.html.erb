@@ -1,8 +1,33 @@
-<h1>All screens</h1>
-<%@screens.each do |screen|%>
-<h3>Screen Name : <%=screen.screen_name%></h3>
-<h3>Capacity :<%=screen.capacity%></h3>
-<%= link_to "Show_Screen", screen_path(screen)%><br>
-<%end%>
+<html>
+<head>
+<style>
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+</style>
+</head>
+<div class="container">
+ <h1>All Screen </h1>
+
+<ul>
+  <% @screens.each do |screen| %>
+    <li>
+   
+      <p><strong>Screen Name : </strong><%=screen.screen_name%></p>
+      <p><strong>Capacity : </strong><%=screen.capacity%></p>
+
+    </li>
+<%= link_to "Show_Screen", screen_path(screen)%><br><br>
+ <% end %>
 <%= link_to 'Create_New_screens', new_theater_screen_path%><br> 
 <%= link_to 'Back_to_Theater',theaters_path%><br>
+ </ul>  
+</div>
+</html>

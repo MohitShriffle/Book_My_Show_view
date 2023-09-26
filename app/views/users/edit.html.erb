@@ -1,0 +1,36 @@
+<center>
+
+<%= form_for @current_user, :url =>{:action => "update", :id =>@current_user} do |form| %>
+  <div>
+    <%= form.label :Name %><br>
+    <%= form.text_field :name %>
+    <% @current_user.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= form.label :User_Name %><br>
+    <%= form.text_field :user_name %>
+    <% @current_user.errors.full_messages_for(:user_name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= form.label :Email %><br>
+    <%= form.text_field :email %>
+    <% @current_user.errors.full_messages_for(:email).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :profile_picture %><br>
+    <%= form.file_field :image %>
+  </div>
+    <div>
+      <br><%= form.submit %>
+    </div>
+  <% end %>
+</center>
+<%=link_to "Back",profile_path%>

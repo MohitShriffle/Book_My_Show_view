@@ -2,9 +2,7 @@ class MoviesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    # @movies = Movie.paginate(:page => params[:page], :per_page => 10)
-    # render json: @movie
-    @movies =Movie.all
+    @movies = Movie.paginate(:page => params[:page], :per_page => 1)
   end
 
   def show
@@ -41,9 +39,10 @@ class MoviesController < ApplicationController
       @movie.errors.full_messages
     end
   end
+  
   def search_movie_by_name
-
   end
+  
   def search_movie
     name = params[:name]
 

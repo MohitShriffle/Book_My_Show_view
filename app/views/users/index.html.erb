@@ -1,11 +1,44 @@
-<h1>Names of all the people</h1>
-<% @users.each do |user| %>
-  Name: <%= user.name %><br>
-     <td>
-          <% if user.image.attached? %>
-            <%= image_tag user.image %>
-          <% else %>
-            No Poster Available
-          <% end %>
-        </td>
-<% end %>
+<html>
+<head>
+<style>
+    
+button.destroy-button 
+{
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.container
+{
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}     
+
+</style>
+<head>
+<body>
+
+<div class="container">
+<td>
+  <% if current_user.image.attached? %>
+  <%= image_tag current_user.image %>
+  <% else %>
+  No Poster Available
+  <% end %>
+</td>
+<p><strong> Name : </strong><%=current_user.name%></p>
+<p><strong>User Name : </strong><%=current_user.user_name%></p>
+<p><strong>Email :</strong><%=current_user.email%></p>
+
+<%= link_to "Edit_Profile", edit_user_path(current_user)%><br>
+<%= link_to 'Back_to_home', root_path%><br>
+
+</div>
+</body>
+</html>

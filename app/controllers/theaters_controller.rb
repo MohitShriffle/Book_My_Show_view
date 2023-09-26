@@ -3,7 +3,8 @@ class TheatersController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @theaters=@current_user.theaters
+    @theaters =@current_user.theaters.paginate(:page => params[:page], :per_page => 2)
+    # @theaters=@current_user.theaters
   end
   
   def show

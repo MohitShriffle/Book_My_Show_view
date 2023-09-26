@@ -1,14 +1,29 @@
-<center><h1>Edit Book Detail</h1>
 
-<%= form_for @movie, :url =>{:action => "update", :id =>@movie} do |form| %>
-  <label for="name">Name</label>
-   <%= form.text_field :name ,id: "name"%><br><br>
-    <label for="release_date">Release Date</label>
-    <%= form.date_field :release_date, id: "release_date" %><br><br>
-    <label for="poster">Poster</label>
-    <%= form.file_field :poster, id: "poster" %><br><br>
-    <%= form.submit %><br>
- <% end %>
+<center>
+<%= form_with model: @movie do |form| %>
+  <div>
+    <%= form.label :Name %><br>
+    <%= form.text_field :name %>
+    <% @movie.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
 
-<%= link_to 'Back', {:action => 'index' } %>
+    <div>
+      <%= form.label :release_date %><br>
+      <%= form.date_field :release_date %>
+      <% @movie.errors.full_messages_for(:release_date).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+
+    <div>
+      <%= form.label :poster %><br>
+      <%= form.file_field :poster %><br>
+    </div>
+   
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
 </center>

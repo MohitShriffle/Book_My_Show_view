@@ -3,28 +3,39 @@
 <head>
 <style>
     
-    button.destroy-button {
-      background-color: #ff0000;
-      color: #fff;
-      border: none;
-      padding: 5px 10px;
-      cursor: pointer;
-    }     
+button.destroy-button 
+{
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.container
+{
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}     
 
 </style>
 <head>
 <body>
-<h1> </h1>
 
-<div>
-<h3>screen name : <%=@screen.screen_name%></h3>
-<h3>screen capacity : <%=@screen.capacity%>
-<h3>Theater name : <%=@screen.theater.name%></h3>
+<div class="container">
+
+<p><strong>Screen Name : </strong><%=@screen.screen_name%></p>
+<p><strong>Screen Capacity : </strong><%=@screen.capacity%></p>
+<p><strong>Theater Name :</strong><%=@screen.theater.name%></p>
 
 <%= link_to "Edit_screen", edit_screen_path(@screen)%><br>
 <%= button_to "Destroy", @screen, method: :delete , class: "destroy-button"%><br>
 <%= link_to 'Back_to_screens', theater_screens_path(@screen.theater)%><br>
 <%= link_to 'Create_New_Show', new_screen_show_path(@screen)%>
+
 </div>
 </body>
 </html>

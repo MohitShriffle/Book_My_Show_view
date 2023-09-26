@@ -1,20 +1,41 @@
 <html>
-<head>
-<style>
-  .flash{
-    color: red;
-  }
-</style>
+  <head>
+    <style>
 
-<head>
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+</style>
+</head>
+<div class="container">
 <body>
 <%= link_to "Search_Tickets", search_tickets_by_id_path %>
+<ol type="1">
+
 <%@booking_history.each do |t|%>
+<li>
 <p><strong>Ticket Id :</strong> <%=t.unique_id%></p>
 <p><strong>Theater Name :</strong> <%=t.show.screen.theater.name%></p>
 <p><strong>Movie Name :</strong> <%=t.show.movie.name%></p>
-<p><strong>Theater Loacation:</strong><%=t.show.screen.theater.location%>
-<h5>--------------------------------------------------------------</h5>
+<p><strong>Theater Loacation :</strong><%=t.show.screen.theater.location%>
+
+</li>
 <%end%>
+</ol>
+
 </body>
+ <center>
+  <%= will_paginate @booking_history %>
+ </center>
+
+<ul>
+
+ </ul>  
+</div>
 </html>
