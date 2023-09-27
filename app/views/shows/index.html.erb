@@ -1,19 +1,36 @@
+
 <html>
 <head>
-<head>
-  <body>
-    <h3>Movie all Show<h3>
-    <%@shows.each do |show|%>
-       
-      <h5>Theater Name :<%= show.screen.theater.name%></h5>
-      <h5>Start Time :<%= show.start_time.strftime('%I:%M %p') %><h5>
-      <h5>End Time :<%= show.end_time.strftime('%I:%M %p') %></h5> 
-      <h5>Movie Name:<%= show.movie.name%></h5>
-      <h5> Sheet Available:<%= show.screen.capacity%></h5>
-      <%= link_to "Book_Tickets",new_show_ticket_path(show)%>
-<h1>----------------------------------------------------------</h1>
-  <%link_to %>
+<style>
 
-    <%end%>
-  </body>
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+</style>
+</head>
+<div class="container">
+ <h1>All Show </h1>
+
+<ul>
+  <% @shows.each do |show| %>
+    <li>
+      <p><strong>Theater Name : </strong><%= show.screen.theater.name%></p>
+      <p><strong>Start Time : </strong><%= show.start_time.strftime('%I:%M %p') %></p>
+      <p><strong>End Time : </strong><%= show.end_time.strftime('%I:%M %p')%> </p> 
+      <p><strong>Movie Name : </strong><%= show.movie.name%></p>
+      <p><strong>Sheet Available : </strong><%= show.screen.capacity%></p>
+      <%= link_to "Book_Tickets",new_show_ticket_path(show)%>
+    </li>
+ <% end %>
+  <center>
+    <%= will_paginate @shows %>
+  </center>
+ </ul>  
+</div>
 </html>

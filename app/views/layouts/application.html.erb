@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     <title>Book_My_Show</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -47,9 +49,13 @@
   background-color: 87CEFA;
   color: white;
  }
- .profile
+ #profile
  {
   margin-left: 455px;
+ }
+ .flash
+ {
+  color: red;
  }
 </style>
   </head>
@@ -64,17 +70,28 @@
   <%= link_to "Home", root_path, class: 'active' %>
   <%= link_to "Tickets", tickets_path %>
   <%= link_to "Theaters", theaters_path %>
-  <%=link_to 'search_movie',search_movie_by_name_path %>
-  <%=link_to "Profile",profile_path, class:'profile'%>
+  <a href="/search_movie_by_name"><i class="fa fa-fw fa-search" id="profle"></i> Search</a>
+  <%
+=begin%>
+ <%=link_to 'search_movie',search_movie_by_name_path %> 
+<%
+=end%>
+  <a href="/profile"><i class="fa fa-fw fa-user" id="profile"></i> profile</a>
+  
 </div>
     <% end %>
 </div>
 
 <div class="flash"><%= flash[:notice] %></div>
   <% if alert %> <p class="alert alert-danger"><%= alert %></p> <% end %>
+
+
+
     <%= yield %> 
+      <%if user_signed_in?%>
+  <%= link_to 'Sign out', destroy_user_session_path %>
+  <%end%>
     <br>
-<%= link_to 'Sign out', destroy_user_session_path %>
 <center>
   <div style="background-color: #007BFF; padding: 10px;">
     <p style="color: #fff; font-size: 14px; margin: 0;">&copy; 2023 Book_My_Show</p>

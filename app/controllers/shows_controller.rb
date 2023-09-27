@@ -3,16 +3,18 @@ class ShowsController < ApplicationController
   before_action :find_screen, only: [:create,:new]
   def index
     movie=Movie.find(params[:movie_id])
-    @shows=movie.shows
+    @shows=movie.shows.paginate(:page => params[:page], :per_page => 2)
   end
-
+  
   def show
     #  @screen=Screen.find(params[:screen_id])
   end
+  
   def new
     @show=Show.new
     @movie=Movie.all
   end
+  
   def create
     @show = @screen.build_show(show_params)
 

@@ -3,8 +3,7 @@ class TicketsController < ApplicationController
   before_action :set_ticket, only:[:show,:destroy]
   
   def index
-    
-    if current_user.tickets.presence
+    if current_user.tickets.exists?
       @booking_history=current_user.tickets.presence.paginate(:page => params[:page], :per_page => 1)
     else
       flash[:notice]="Curruntly we dont have your booking history"
@@ -18,18 +17,19 @@ class TicketsController < ApplicationController
   end
   
   def search_tickets
-    id=params[:unique_id]
+    id=params[:unique_id].strip
     
-    unless id.presence
+    unless id.present?
+    
       flash.now[:notice] = "please give write information"
     end
-    ticket=Ticket.find_by(unique_id: params[:unique_id])
     
-    if ticket.presence
+    ticket=Ticket.find_by(unique_id: params[:unique_id].strip)
+    
+    if ticket.present?
       redirect_to ticket_path(ticket)
     else
-      flash.now[:notice] = "please give write information"
-      
+      flash.now[:notice] = "Ticket Not Found"
     end
   end
   

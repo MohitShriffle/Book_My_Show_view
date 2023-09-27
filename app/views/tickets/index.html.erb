@@ -15,9 +15,10 @@
 </head>
 <div class="container">
 <body>
-<%= link_to "Search_Tickets", search_tickets_by_id_path %>
-<ol type="1">
 
+<ol type="1">
+<% if current_user.tickets.exists? %>
+<%= link_to "Search_Tickets", search_tickets_by_id_path %>
 <%@booking_history.each do |t|%>
 <li>
 <p><strong>Ticket Id :</strong> <%=t.unique_id%></p>
@@ -27,13 +28,14 @@
 
 </li>
 <%end%>
+
 </ol>
 
 </body>
  <center>
   <%= will_paginate @booking_history %>
  </center>
-
+<%end%>
 <ul>
 
  </ul>  
